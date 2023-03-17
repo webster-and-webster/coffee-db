@@ -4,6 +4,7 @@ on:
 
 env:
   POETRY_VERSION: 1.3.2
+  ENVIRONMENT: HEROKU
 
 jobs:
   StreamlitIntegrationTests:
@@ -33,8 +34,7 @@ jobs:
             poetry config virtualenvs.create false --local
             poetry install
 
-      - name: Test with pytest
+      - name: Get database url
         run: |
-          export ENVIRONMENT=HEROKU
-          export DATABASE_URL=${heroku config:get DATABASE_URL}
+          export DATABASE_URL=$(heroku config:get DATABASE_URL)
           pytest tests/test_streamlit_integration/.
