@@ -1,16 +1,40 @@
-name: Python package
+name: Streamlit integration tests
+on:
+  push:
 
-on: [push]
+env:
+  POETRY_VERSION: 1.3.2
 
 jobs:
-  build:
+  StreamlitIntegrationTests:
+    name: Streamlit integration tests
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: akhileshns/heroku-deploy@v3.12.13 # This is the action
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Heroku cli
+        uses: akhileshns/heroku-deploy@v3.12.13 # This is the action
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "coffee-db"
           heroku_email: "edwardpwebster@gmail.com"
           justlogin: true
-      - run: heroku auth:whoami
+
+      - name: Setup python 3.9
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.9
+      
+      - name: Install dependencies
+        run: |
+            python -m pip install --upgrade pip==23.0
+            pip install poetry==${{ env.POETRY_VERSION }}
+            poetry config virtualenvs.create false --local
+            poetry install
+
+      - name: Test with pytest
+        run: |
+          export ENVIRONMENT=HEROKU
+          export DATABASE_URL=${heroku config:get DATABASE_URL}
+          pytest tests/test_streamlit_integration/.
