@@ -34,7 +34,10 @@ jobs:
             poetry config virtualenvs.create false --local
             poetry install
 
-      - name: Get database url
+      - name: Install playwright
+        run: playwright install
+
+      - name: Test with pytest
         run: |
           export DATABASE_URL=$(heroku config:get DATABASE_URL)
           pytest tests/test_streamlit_integration/.
