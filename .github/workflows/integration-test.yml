@@ -7,9 +7,18 @@ env:
   ENVIRONMENT: HEROKU
 
 jobs:
+
   StreamlitIntegrationTests:
     name: Streamlit integration tests
     runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:latest
+        env:
+          POSTGRES_PORT: 5432
+        ports:
+          - 5432:5432
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
