@@ -1,7 +1,7 @@
 import psycopg2
 import psycopg2.extras
 
-from coffee_db.database import get_database_url
+from coffee_db.database import DATABASE_URL
 
 
 class CoffeeDB():
@@ -9,12 +9,16 @@ class CoffeeDB():
     Class to represent the PSQL coffee database
     """
 
+    def __init__(self):
+
+        self.db_url = DATABASE_URL
+
     def _connect(self) -> psycopg2.extensions.connection:
         """
         Generate a psycopg2 connection object.
         """
 
-        return psycopg2.connect(get_database_url())
+        return psycopg2.connect(self.db_url)
 
     def _execute(self, query: str, values: tuple = None) -> list[dict]:
         """
