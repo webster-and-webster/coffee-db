@@ -197,3 +197,5 @@ terraform.rc
 
 # Ignore VS code settings
 .vscode/settings.json
+
+.DS_store
