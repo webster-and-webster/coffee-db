@@ -23,7 +23,7 @@ def before_test(page: Page):
 
 @contextmanager
 def run_streamlit():
-    """Run the streamlit app at examples/streamlit_app.py on port 8599"""
+    """Run the streamlit app at app.py on port 8599"""
     import subprocess
 
     if LOCAL_TEST:
