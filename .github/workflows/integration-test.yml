@@ -40,7 +40,6 @@ jobs:
 
       - name: Test with pytest
         run: |
-          sudo ln -s /tmp/.s.PGSQL.5432 /var/run/postgresql/.s.PGSQL.5432
           export DATABASE_URL=$(heroku config:get DATABASE_URL -a coffee-db)
           export ENVIRONMENT=HEROKU
-          pytest tests/test_streamlit_integration/.
+          pytest tests/test_streamlit_integration/. --browser chromium
