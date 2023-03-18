@@ -34,9 +34,22 @@ jobs:
             pip install poetry==${{ env.POETRY_VERSION }}
             poetry config virtualenvs.create false --local
             poetry install
-
       - name: Install playwright
         run: playwright install
+
+      - name: Create requirements.txt file
+        run: |
+          poetry export --without-hashes --format=requirements.txt > requirements.txt
+      - name: Verify changed requirements file
+        uses: tj-actions/verify-changed-files@v14
+        id: verify-changed-files
+        with:
+          files: |
+             requirements.txt
+      - name: Run step only when any of the above files change.
+        if: steps.verify-changed-files.outputs.files_changed == 'true'
+        run: |
+          exit 1
 
       - name: Test with pytest
         run: |
