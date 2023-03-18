@@ -20,6 +20,9 @@ def before_module():
 def before_test(page: Page):
     page.goto(f"localhost:{PORT}")
 
+    # give the page time to load
+    sleep(5)
+
 
 @contextmanager
 def run_streamlit():
@@ -44,6 +47,7 @@ def run_streamlit():
             ]
         )
 
+        # give the app time to run
         sleep(5)
 
         try:
