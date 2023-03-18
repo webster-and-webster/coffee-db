@@ -50,13 +50,10 @@ make lint
 
 ### Deploying to Heroku
 
-Once you have merged your updates into `main`, you can call the following command to push to Heroku which will automatically deploy the new code:
-
+The repository is set to automatically deploy when pushing to `main`, dependant on the CI pipelines passing. You can manually deploy the app using the following command:
 ```
 git push heroku main
 ```
-
-TODO: Add github actions to automatically deploy to Heroku once code is merged into `main`.
 
 
 ### Heroku PSQL CLI
