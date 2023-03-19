@@ -1,4 +1,4 @@
-## Responsible for defining map plots.
+# Responsible for defining map plots.
 import folium
 from folium.plugins import MarkerCluster
 
