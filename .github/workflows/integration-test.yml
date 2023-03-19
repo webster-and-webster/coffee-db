@@ -1,6 +1,13 @@
 name: Streamlit integration tests
 on:
+  push:
+    branches:
+      - main
+      - develop
   pull_request:
+    branches:
+      - main
+      - develop
 
 env:
   POETRY_VERSION: 1.3.2
