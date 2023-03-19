@@ -1,4 +1,4 @@
-# Coffee DB
+# Coffee DB <a href="http://coffee-db.herokuapp.com/"><img src="docs/logo.png" align="right" height="138" /></a>
 
 Tool for uploading and storing coffees in a DB.
 
