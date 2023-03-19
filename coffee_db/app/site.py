@@ -9,13 +9,8 @@ class Site:
     """
     Coffee website App
     """
-    def __init__(
-        self,
-        pages: list[Page],
-        name: str,
-        data_loader,
-        db
-    ):
+
+    def __init__(self, pages: list[Page], name: str, data_loader, db):
         self.pages = pages
         self.name = name
         self.data_loader = data_loader(db)
@@ -45,7 +40,8 @@ class Site:
                     width: 100%;
                 }
             </style>
-            """, unsafe_allow_html=True
+            """,
+            unsafe_allow_html=True,
         )
         st.sidebar.markdown("---")
 
@@ -69,7 +65,7 @@ class Site:
         current_page_name = st.sidebar.radio(
             label=" ",
             options=[make_title(page.header) for page in self.pages],
-            label_visibility="hidden"
+            label_visibility="hidden",
         )
         current_page = self._get_page_by_name(current_page_name)
         current_page.write()

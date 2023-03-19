@@ -6,7 +6,6 @@ from coffee_db.app.utils.custom_title import make_title
 
 
 class Page(ABC):
-
     def __init__(self, tabs: list[Tab] = None):
         self.tabs = tabs
 

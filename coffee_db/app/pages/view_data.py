@@ -5,7 +5,6 @@ from coffee_db.app.utils import Page
 
 
 class ViewData(Page):
-
     @property
     def header(self):
         return "View Data"
@@ -20,6 +19,6 @@ class ViewData(Page):
                 "Processes",
                 "Varieties",
                 "Coffee Users",
-            ]
+            ],
         )
         return data_name

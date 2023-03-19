@@ -40,7 +40,7 @@ class BaseCoffeeDbObject(BaseModel):
     name: str
 
     # validators
-    _check_name = validator('name', allow_reuse=True)(check_name)
+    _check_name = validator("name", allow_reuse=True)(check_name)
 
     def __str__(self):
         return self.name
@@ -89,5 +89,9 @@ class Coffee(BaseCoffeeDbObject):
     tasting_notes: Optional[str] = None
 
     # validators
-    _check_tasting_notes = validator('tasting_notes', allow_reuse=True)(tasting_notes_must_be_lower_case)
-    _check_elevation = validator('elevation', allow_reuse=True)(elevation_must_be_greater_than_zero)
+    _check_tasting_notes = validator("tasting_notes", allow_reuse=True)(
+        tasting_notes_must_be_lower_case
+    )
+    _check_elevation = validator("elevation", allow_reuse=True)(
+        elevation_must_be_greater_than_zero
+    )

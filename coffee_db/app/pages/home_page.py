@@ -4,7 +4,6 @@ from coffee_db.app.utils import Page, Tab
 
 
 class HomePage(Page):
-
     def __init__(self, tabs: list[Tab] = None):
         self.tabs = tabs
 

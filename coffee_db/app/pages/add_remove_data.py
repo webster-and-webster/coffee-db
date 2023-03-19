@@ -6,7 +6,6 @@ from coffee_db.app.utils.custom_title import make_title
 
 
 class AddRemoveData(Page):
-
     def __init__(self, tabs: list[forms.EntryForm]):
         self.tabs = tabs
 

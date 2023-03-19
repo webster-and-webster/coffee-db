@@ -25,7 +25,6 @@ def validate_payload(payload: dict, pydantic_class: ModelMetaclass):
 
 
 class InputValidator:
-
     @staticmethod
     def validate_country_payload(payload: dict):
         return validate_payload(payload, Country)

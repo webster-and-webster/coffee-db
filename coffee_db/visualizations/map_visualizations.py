@@ -6,10 +6,7 @@ from coffee_db.coffee import Coffee, Country
 
 
 def _get_popup_text(country_name: str, num_coffees: int) -> str:
-    return (
-        f"Country: {country_name}<br>"
-        f"Coffees: {num_coffees}"
-    )
+    return f"Country: {country_name}<br>" f"Coffees: {num_coffees}"
 
 
 def _get_coffees_by_country(coffees: list[Coffee]) -> dict[Country, int]:
@@ -39,9 +36,6 @@ def plot_coffees_by_country(coffees: list[Coffee]) -> folium.Map:
         lat, long = country.get_lat_long()
         popup_text = _get_popup_text(country.name, coffee_count)
         folium.CircleMarker(
-                location=[lat, long],
-                radius=coffee_count,
-                popup=popup_text,
-                fill=True
-            ).add_to(marker_cluster)
+            location=[lat, long], radius=coffee_count, popup=popup_text, fill=True
+        ).add_to(marker_cluster)
     return world_map
