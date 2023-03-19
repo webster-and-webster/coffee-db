@@ -33,6 +33,17 @@ Then run the streamlit app from the root directory.
 streamlit run app.py
 ```
 
+## Package management with Poetry and requirements.txt
+The project uses `poetry` for it's package management. However, the Python buildpack for Heroku requires a `requirements.txt` ([see docs](https://elements.heroku.com/buildpacks/heroku/heroku-buildpack-python)) file to be available. To generate the `requirements.txt` from the `poetry` environment, run the following command:
+```
+poetry export --without-hashes --format=requirements.txt > requirements.txt
+```
+
+## Formatting with Make
+There is a simple github action to test formatting and linting using black and flake8 respectively. To run these checks locally prior to pushing your changes, use the following command:
+```
+make lint
+```
 
 
 ## Heroku Commands
@@ -54,11 +65,4 @@ Use the following command to interact with the deployed psql database:
 
 ```
 heroku pg:psql
-```
-
-
-## Package management with Poetry and requirements.txt
-The project uses `poetry` for it's package management. However, the Python buildpack for Heroku requires a `requirements.txt` ([see docs](https://elements.heroku.com/buildpacks/heroku/heroku-buildpack-python)) file to be available. To generate the `requirements.txt` from the `poetry` environment, run the following command:
-```
-poetry export --without-hashes --format=requirements.txt > requirements.txt
 ```

@@ -28,6 +28,6 @@ jobs:
             poetry config virtualenvs.create false --local
             poetry install
 
-      - name: Lint with flake8
+      - name: Quality check with flake8 and black
         run: |
-          flake8 coffee_db --max-line-length 120
+          make lint
