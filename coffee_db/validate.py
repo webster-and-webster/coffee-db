@@ -1,6 +1,4 @@
-import datetime
 import json
-from typing import List
 
 from pydantic import ValidationError
 from pydantic.main import ModelMetaclass

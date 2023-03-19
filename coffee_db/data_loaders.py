@@ -40,7 +40,7 @@ class PostgresDataLoader:
         for process in processes:
             processes_dict[process["name"]] = Process(**process)
         return processes_dict
-    
+
     def _get_roasteries(self, countries: dict[str, Country]) -> dict[str, Roastery]:
         """
         Builds Roastery pydantic models from the db data.
