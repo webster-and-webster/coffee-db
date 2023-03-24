@@ -14,13 +14,6 @@ def check_name(name: str):
         return name
 
 
-def name_must_be_capitalized(name: str):
-    if name[0].isupper():
-        return name
-    else:
-        raise ValueError("Name must be capitalized")
-
-
 def tasting_notes_must_be_lower_case(tasting_notes: str):
     if tasting_notes:
         if not tasting_notes.islower():
