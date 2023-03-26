@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "coffee-db"
-version = "0.2.5"
+version = "0.2.6"
 description = ""
 authors = ["Ned Webster <edwardpwebster@gmail.com>"]
 readme = "README.md"
@@ -21,6 +21,7 @@ flake8 = "^6.0.0"
 pytest = "^7.2.2"
 pytest-playwright = "^0.3.2"
 black = "^23.1.0"
+pytest-mock = "^3.10.0"
 
 [build-system]
 requires = ["poetry-core"]
