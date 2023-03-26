@@ -31,3 +31,7 @@ jobs:
       - name: Quality check with flake8 and black
         run: |
           make lint
+      
+      - name: Test coffee_db app code
+        run: |
+          make test_app

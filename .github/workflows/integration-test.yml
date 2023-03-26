@@ -63,4 +63,4 @@ jobs:
         run: |
           export DATABASE_URL=$(heroku config:get DATABASE_URL -a coffee-db)
           export ENVIRONMENT=HEROKU
-          pytest tests/test_integration/. --browser chromium
+          make test_integration

@@ -58,4 +58,4 @@ def run_streamlit():
 
 def test_marker_click(page: Page):
     # Check page title
-    expect(page.get_by_text('Welcome to Coffee DB!')).to_be_visible()
+    expect(page.get_by_text("Welcome to Coffee DB!")).to_be_visible()
