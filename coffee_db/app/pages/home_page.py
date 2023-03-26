@@ -12,7 +12,13 @@ class HomePage(Page):
         return "Home Page"
 
     def body(self):
-        st.markdown("Welcome to Coffee DB!")
+        st.markdown(
+            """
+        Welcome to Coffee DB! Coffee DB is a webapp designed to store and track purchases of bags of coffee. Check out
+         the coffee visualisations by clicking the 'Visualisations' tab on the left, or add a new coffee in the
+         'Add/Remove Data' tab.
+        """
+        )
 
     def write(self):
         st.title(self.header)
