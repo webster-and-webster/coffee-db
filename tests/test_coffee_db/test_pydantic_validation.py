@@ -1,7 +1,11 @@
 from pydantic import BaseModel, validator
 import pytest
 
-from coffee_db.coffee import check_name, tasting_notes_must_be_lower_case, elevation_must_be_greater_than_zero
+from coffee_db.coffee import (
+    check_name,
+    tasting_notes_must_be_lower_case,
+    elevation_must_be_greater_than_zero,
+)
 from coffee_db.validate import validate_payload
 
 
@@ -25,7 +29,6 @@ def dummy_class():
 
 
 def test_validate_payload_pass(dummy_class):
-
     payload = {"name": "Name", "tasting_notes": "one, two, three", "elevation": 1}
 
     output = validate_payload(payload, dummy_class)
@@ -34,7 +37,6 @@ def test_validate_payload_pass(dummy_class):
 
 
 def test_name_fail(dummy_class):
-
     payload = {"name": "name", "tasting_notes": "one, two, three", "elevation": 1}
     output = validate_payload(payload, dummy_class)
 
@@ -42,7 +44,6 @@ def test_name_fail(dummy_class):
 
 
 def test_tasting_notes_fails(dummy_class):
-
     payload = {"name": "Name", "tasting_notes": "some, Upper", "elevation": 1}
     output = validate_payload(payload, dummy_class)
 
@@ -50,7 +51,6 @@ def test_tasting_notes_fails(dummy_class):
 
 
 def test_elevation_fails(dummy_class):
-
     payload = {"name": "Name", "tasting_notes": "one, two, three", "elevation": -1}
     output = validate_payload(payload, dummy_class)
 

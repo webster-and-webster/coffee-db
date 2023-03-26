@@ -1,12 +1,12 @@
 # Coffee DB <a href="http://coffee-db.herokuapp.com/"><img src="docs/logo.png" align="right" height="138" /></a>
 
-Tool for uploading and storing coffees in a DB.
+Coffee DB is a web app to track purchases of bags of coffee. The app is built with a Streamlit frontend, which allows you to add new coffees and visualise the coffee database. The backend uses a postgres SQL database to store the coffees. Both the app and the databse are hosted using Heroku. The app can be accessed at the following url: https://coffee-db.herokuapp.com/
 
 ## Running Locally
 
-In order to run the app locally, it requires you to have postgresql installed on your machine.
+In order to run the app locally, it requires you to have [postgresql](https://www.postgresql.org/) installed on your machine. Once postgresql is installed, run the `helpers/db_init.sql` file to build the database that matches the production schemas. This will give you the correct tables for the app to run correctly.
 
-Then add a database.ini file in the following location: `coffee_db/database/database.ini`
+In order to connect locally, add a database.ini file in the following location: `coffee_db/database/database.ini`
 
 The file should look like the following:
 ```
@@ -45,18 +45,24 @@ There is a simple github action to test formatting and linting using black and f
 make lint
 ```
 
+## Testing with pytest
+The project uses pytest for testing. Testing is split into unit-tests for the coffee_app, and integration tests. The tests are checked as part of the CICD pipeline, but they can be run manually with the following make commands:
+```
+make test_app
+make test_integration
+```
+Note: In order for the tests to pass, you must have an available connection to a PSQL database.
+Note: Tests are still a work in progress, and testing coverage is sparse right now.
+
 
 ## Heroku Commands
 
 ### Deploying to Heroku
 
-Once you have merged your updates into `main`, you can call the following command to push to Heroku which will automatically deploy the new code:
-
+The repository is set to automatically deploy when pushing to `main`, dependant on the CI pipelines passing. You can manually deploy the app using the following command:
 ```
 git push heroku main
 ```
-
-TODO: Add github actions to automatically deploy to Heroku once code is merged into `main`.
 
 
 ### Heroku PSQL CLI
