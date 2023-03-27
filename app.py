@@ -17,12 +17,12 @@ pages = [
     Visualizations(tabs=[WorldMapPlot()]),
     ViewData(
         tabs=[
-            tables.RoasteryTable(),
-            tables.CoffeeTable(),
-            tables.CountryTable(),
-            tables.VarietyTable(),
-            tables.ProcessTable(),
-            tables.CoffeeUserTable(),
+            tables.StreamlitTable("roastery"),
+            tables.StreamlitTable("coffee"),
+            tables.StreamlitTable("country"),
+            tables.StreamlitTable("variety"),
+            tables.StreamlitTable("process"),
+            tables.StreamlitTable("coffee_user"),
         ]
     ),
     AddRemoveData(
