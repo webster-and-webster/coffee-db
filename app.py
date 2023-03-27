@@ -1,5 +1,11 @@
 from coffee_db.app import Site
-from coffee_db.app.pages import HomePage, AddRemoveData, Visualizations, WorldMapPlot, ViewData
+from coffee_db.app.pages import (
+    HomePage,
+    AddRemoveData,
+    Visualizations,
+    WorldMapPlot,
+    ViewData,
+)
 from coffee_db import CoffeeDB
 from coffee_db.data_loaders import PostgresDataLoader
 

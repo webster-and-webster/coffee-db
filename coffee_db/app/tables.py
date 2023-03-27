@@ -6,7 +6,6 @@ from coffee_db.database.heroku_psql import CoffeeDB
 
 
 class Table(ABC):
-
     def __init__(self):
         self.db = CoffeeDB()
 
@@ -25,42 +24,36 @@ class Table(ABC):
 
 
 class RoasteryTable(Table):
-
     @property
     def header(self):
         return "roastery"
 
 
 class CountryTable(Table):
-
     @property
     def header(self):
         return "country"
 
 
 class VarietyTable(Table):
-
     @property
     def header(self):
         return "variety"
 
 
 class ProcessTable(Table):
-
     @property
     def header(self):
         return "process"
 
 
 class CoffeeUserTable(Table):
-
     @property
     def header(self):
         return "coffee_user"
 
 
 class CoffeeTable(Table):
-
     @property
     def header(self):
         return "coffee"
