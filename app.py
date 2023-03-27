@@ -1,15 +1,24 @@
 from coffee_db.app import Site
-from coffee_db.app.pages import HomePage, AddRemoveData, Visualizations, WorldMapPlot
+from coffee_db.app.pages import HomePage, AddRemoveData, Visualizations, WorldMapPlot, ViewData
 from coffee_db import CoffeeDB
 from coffee_db.data_loaders import PostgresDataLoader
 
-from coffee_db.app import forms
+from coffee_db.app import forms, tables
 
 
 pages = [
     HomePage(),
     Visualizations(tabs=[WorldMapPlot()]),
-    # ViewData(), ## TODO: Implement ViewData functionality
+    ViewData(
+        tabs=[
+            tables.RoasteryTable(),
+            tables.CoffeeTable(),
+            tables.CountryTable(),
+            tables.VarietyTable(),
+            tables.ProcessTable(),
+            tables.CoffeeUserTable(),
+        ]
+    ),
     AddRemoveData(
         tabs=[
             forms.RoasteryForm(),
