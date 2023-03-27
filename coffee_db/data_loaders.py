@@ -8,6 +8,7 @@ class PostgresDataLoader:
     """
     Class for loading data from SQL into Pydantic data models.
     """
+
     def __init__(self, db: CoffeeDB):
         self.db = db
 
@@ -40,7 +41,7 @@ class PostgresDataLoader:
         for process in processes:
             processes_dict[process["name"]] = Process(**process)
         return processes_dict
-    
+
     def _get_roasteries(self, countries: dict[str, Country]) -> dict[str, Roastery]:
         """
         Builds Roastery pydantic models from the db data.
@@ -97,9 +98,7 @@ class PostgresDataLoader:
                         f"Coffee {coffee['name']} has unknown {coffee_attr[0]} {coffee[coffee_attr[0]]}."
                         f"Ensure {coffee[coffee_attr[0]]} is in the {coffee_attr[0]} table."
                     )
-            for coffee_attr in [
-                ("varietal", varieties)
-            ]:
+            for coffee_attr in [("varietal", varieties)]:
                 updated_attr = []
                 for list_item in coffee[coffee_attr[0]].split(", "):
                     try:
@@ -123,12 +122,17 @@ class PostgresDataLoader:
         coffee_users = self._get_coffee_users()
         varieties = self._get_varieties()
         roasteries = self._get_roasteries(countries)
-        coffees = self._get_coffees(countries, roasteries, varieties, processes, coffee_users)
+        coffees = self._get_coffees(
+            countries, roasteries, varieties, processes, coffee_users
+        )
         return (
-            list(countries.values()),
-            list(roasteries.values()),
-            list(coffees.values()),
-            list(processes.values()),
-            list(varieties.values()),
-            list(coffee_users.values())
+            sorted(list(data.values()), key=lambda x: x.name)
+            for data in [
+                coffees,
+                coffee_users,
+                countries,
+                processes,
+                roasteries,
+                varieties,
+            ]
         )

@@ -7,6 +7,7 @@ import streamlit as st
 from coffee_db.coffee import Coffee, CoffeeUser, Country, Process, Roastery, Variety
 from coffee_db.validate import InputValidator
 from coffee_db.database.heroku_psql import CoffeeDB
+from coffee_db.app.utils.custom_title import make_title
 
 
 class EntryForm(ABC):
@@ -59,10 +60,10 @@ class EntryForm(ABC):
 
         pass
 
-    def add_entry_form(self, **kwargs):
+    def add(self, **kwargs):
         """Method to build the add entry form, used to add a new row into the database"""
 
-        st.header(self.header.capitalize())
+        st.header(f"Add {make_title(self.header)}")
 
         with st.form(key=f"add_{self.header}", clear_on_submit=True):
             payload = self.build_payload(**kwargs)
@@ -72,8 +73,7 @@ class EntryForm(ABC):
                 validated = self.validate_payload(payload)
                 if isinstance(validated, self.coffee_db_object()):
                     message = self.db.insert_row(
-                        self.header,
-                        self.extract_row_values(payload)
+                        self.header, self.extract_row_values(payload)
                     )
                     if message:
                         st.warning(message)
@@ -82,18 +82,16 @@ class EntryForm(ABC):
                 else:
                     st.warning(validated)
 
-    def remove_entry_form(self):
+    def remove(self):
         """Method to buold the remove entry form, used to remove a row from the database"""
 
-        st.header(self.header.capitalize())
+        st.header(f"Remove {make_title(self.header)}")
 
         with st.form(key=f"remove_{self.header}", clear_on_submit=True):
             row_id = st.text_input("ID")
             submit = st.form_submit_button("Remove")
             if submit:
-                self.db.remove_row(
-                    self.header, (int(row_id),)
-                )
+                self.db.remove_row(self.header, (int(row_id),))
                 st.experimental_rerun()
 
 
@@ -108,7 +106,9 @@ class RoasteryForm(EntryForm):
         return Roastery
 
     def build_payload(self, countries: list):
-        payload = {"id": 1}  # NOTE: The ID is handled by the database, so is set to a default value here
+        payload = {
+            "id": 1
+        }  # NOTE: The ID is handled by the database, so is set to a default value here
         payload["name"] = st.text_input("Name")
         payload["country"] = st.selectbox(
             "Country",
@@ -122,7 +122,6 @@ class RoasteryForm(EntryForm):
         return InputValidator.validate_roastery_payload(payload)
 
     def extract_row_values(self, payload: dict):
-
         return (
             payload["name"],
             payload["country"].name,
@@ -140,7 +139,9 @@ class CountryForm(EntryForm):
         return Country
 
     def build_payload(self):
-        payload = {"id": 1}  # NOTE: The ID is handled by the database, so is set to a default value here
+        payload = {
+            "id": 1
+        }  # NOTE: The ID is handled by the database, so is set to a default value here
         payload["name"] = st.text_input("Name")
 
         return payload
@@ -149,10 +150,7 @@ class CountryForm(EntryForm):
         return InputValidator.validate_country_payload(payload)
 
     def extract_row_values(self, payload: dict):
-
-        return (
-            payload["name"],
-        )
+        return (payload["name"],)
 
 
 class VarietyForm(EntryForm):
@@ -166,7 +164,9 @@ class VarietyForm(EntryForm):
         return Variety
 
     def build_payload(self):
-        payload = {"id": 1}  # NOTE: The ID is handled by the database, so is set to a default value here
+        payload = {
+            "id": 1
+        }  # NOTE: The ID is handled by the database, so is set to a default value here
         payload["name"] = st.text_input("Name")
 
         return payload
@@ -175,10 +175,7 @@ class VarietyForm(EntryForm):
         return InputValidator.validate_variety_payload(payload)
 
     def extract_row_values(self, payload: dict):
-
-        return (
-            payload["name"],
-        )
+        return (payload["name"],)
 
 
 class ProcessForm(EntryForm):
@@ -192,7 +189,9 @@ class ProcessForm(EntryForm):
         return Process
 
     def build_payload(self):
-        payload = {"id": 1}  # NOTE: The ID is handled by the database, so is set to a default value here
+        payload = {
+            "id": 1
+        }  # NOTE: The ID is handled by the database, so is set to a default value here
         payload["name"] = st.text_input("Name")
 
         return payload
@@ -201,10 +200,7 @@ class ProcessForm(EntryForm):
         return InputValidator.validate_process_payload(payload)
 
     def extract_row_values(self, payload: dict):
-
-        return (
-            payload["name"],
-        )
+        return (payload["name"],)
 
 
 class CoffeeUserForm(EntryForm):
@@ -218,7 +214,9 @@ class CoffeeUserForm(EntryForm):
         return CoffeeUser
 
     def build_payload(self):
-        payload = {"id": 1}  # NOTE: The ID is handled by the database, so is set to a default value here
+        payload = {
+            "id": 1
+        }  # NOTE: The ID is handled by the database, so is set to a default value here
         payload["name"] = st.text_input("Name")
 
         return payload
@@ -227,10 +225,7 @@ class CoffeeUserForm(EntryForm):
         return InputValidator.validate_coffee_user_payload(payload)
 
     def extract_row_values(self, payload: dict):
-
-        return (
-            payload["name"],
-        )
+        return (payload["name"],)
 
 
 class CoffeeForm(EntryForm):
@@ -244,7 +239,9 @@ class CoffeeForm(EntryForm):
         return Coffee
 
     def build_payload(self, coffee_users, countries, roasteries, processes, varieties):
-        payload = {"id": 1}  # NOTE: The ID is handled by the database, so is set to a default value here
+        payload = {
+            "id": 1
+        }  # NOTE: The ID is handled by the database, so is set to a default value here
         payload["name"] = st.text_input("Name")
         payload["country_of_origin"] = st.selectbox(
             "Country of Origin",
@@ -282,7 +279,9 @@ class CoffeeForm(EntryForm):
             format_func=lambda x: x.name,
         )
 
-        payload["date_added"] = datetime.now(tz=timezone("GMT")).strftime('%Y-%m-%d %H:%M:%S')
+        payload["date_added"] = datetime.now(tz=timezone("GMT")).strftime(
+            "%Y-%m-%d %H:%M:%S"
+        )
 
         return payload
 
@@ -290,7 +289,6 @@ class CoffeeForm(EntryForm):
         return InputValidator.validate_coffee_payload(payload)
 
     def extract_row_values(self, payload: dict):
-
         return (
             payload["name"],
             payload["country_of_origin"].name,

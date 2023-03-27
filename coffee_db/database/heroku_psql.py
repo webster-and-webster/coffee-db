@@ -1,24 +1,20 @@
 import psycopg2
 import psycopg2.extras
 
-from coffee_db.database import DATABASE_URL
+from coffee_db.database import get_database_url
 
 
-class CoffeeDB():
+class CoffeeDB:
     """
     Class to represent the PSQL coffee database
     """
-
-    def __init__(self):
-
-        self.db_url = DATABASE_URL
 
     def _connect(self) -> psycopg2.extensions.connection:
         """
         Generate a psycopg2 connection object.
         """
 
-        return psycopg2.connect(self.db_url)
+        return psycopg2.connect(get_database_url())
 
     def _execute(self, query: str, values: tuple = None) -> list[dict]:
         """
@@ -60,7 +56,9 @@ class CoffeeDB():
         query = """
             INSERT INTO {0}
             VALUES ({1}%s)
-        """.format(table, value_format)
+        """.format(
+            table, value_format
+        )
         try:
             self._execute(query, values)
         except psycopg2.errors.UniqueViolation:
@@ -74,7 +72,9 @@ class CoffeeDB():
         query = """
             DELETE FROM {0}
             WHERE id=%s
-        """.format(table)
+        """.format(
+            table
+        )
 
         self._execute(query, row_id)
 
