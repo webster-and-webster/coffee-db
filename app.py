@@ -1,5 +1,4 @@
 from coffee_db.app import Site
-<<<<<<< HEAD
 from coffee_db.app.pages import (
     HomePage,
     AddRemoveData,
@@ -7,9 +6,6 @@ from coffee_db.app.pages import (
     WorldMapPlot,
     ViewData,
 )
-=======
-from coffee_db.app.pages import HomePage, AddRemoveData, Visualizations, WorldMapPlot, ViewData
->>>>>>> 966c821 (add view_data and tables pages)
 from coffee_db import CoffeeDB
 from coffee_db.data_loaders import PostgresDataLoader
 
@@ -21,21 +17,12 @@ pages = [
     Visualizations(tabs=[WorldMapPlot()]),
     ViewData(
         tabs=[
-<<<<<<< HEAD
             tables.StreamlitTable("roastery"),
             tables.StreamlitTable("coffee"),
             tables.StreamlitTable("country"),
             tables.StreamlitTable("variety"),
             tables.StreamlitTable("process"),
             tables.StreamlitTable("coffee_user"),
-=======
-            tables.RoasteryTable(),
-            tables.CoffeeTable(),
-            tables.CountryTable(),
-            tables.VarietyTable(),
-            tables.ProcessTable(),
-            tables.CoffeeUserTable(),
->>>>>>> 966c821 (add view_data and tables pages)
         ]
     ),
     AddRemoveData(
