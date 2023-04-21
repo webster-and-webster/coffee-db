@@ -19,6 +19,7 @@ class DatetimePlotter:
         The column of data to plot, for example, 'added_by'.
 
     """
+
     datetime_col = "date_added"
 
     def __init__(self, col: str):
