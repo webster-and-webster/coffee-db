@@ -23,6 +23,8 @@ class DatetimePlotter:
     datetime_col = "date_added"
 
     def __init__(self, col: str):
+        if col == self.datetime_col:
+            raise ValueError("col cannot be the datetime_col 'date_added'")
         self.col = col
 
     def _create_dataframe(self, coffees: list[Coffee]) -> pd.DataFrame:
