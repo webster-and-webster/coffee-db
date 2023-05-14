@@ -3,10 +3,7 @@ from streamlit_folium import folium_static
 
 from coffee_db.app.utils import Page, Tab
 from coffee_db.visualizations.datetime_plot import DatetimePlotter
-from coffee_db.visualizations.map_visualizations import (
-    plot_coffees_by_country,
-    plot_roasteries_by_country,
-)
+from coffee_db.visualizations.map_visualizations import WorldMapPlotter
 
 
 class Visualizations(Page):
@@ -21,6 +18,7 @@ class WorldMapPlot(Tab):
         return "World Map Plot"
 
     def write(self):
+        world_map_plotter = WorldMapPlotter()
         st.title(self.header)
         option = st.selectbox(
             "plot_type",
@@ -28,9 +26,17 @@ class WorldMapPlot(Tab):
             label_visibility="hidden",
         )
         if option == "Coffees":
-            folium_static(plot_coffees_by_country(coffees=st.cache.coffees))
+            folium_static(
+                world_map_plotter.plot_objects_by_country(
+                    objects=st.cache.coffees, object_name=option
+                )
+            )
         else:
-            folium_static(plot_roasteries_by_country(roasteries=st.cache.roasteries))
+            folium_static(
+                world_map_plotter.plot_objects_by_country(
+                    objects=st.cache.roasteries, object_name=option
+                )
+            )
 
 
 class CoffeesByUser(Tab):
