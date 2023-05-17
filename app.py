@@ -1,5 +1,6 @@
 from coffee_db.app import Site
 from coffee_db.app.pages import (
+    CoffeesByUser,
     HomePage,
     AddRemoveData,
     Visualizations,
@@ -14,7 +15,7 @@ from coffee_db.app import forms, tables
 
 pages = [
     HomePage(),
-    Visualizations(tabs=[WorldMapPlot()]),
+    Visualizations(tabs=[WorldMapPlot(), CoffeesByUser()]),
     ViewData(
         tabs=[
             tables.StreamlitTable("roastery"),
