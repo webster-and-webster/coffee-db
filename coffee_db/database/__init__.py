@@ -10,7 +10,7 @@ def get_environment():
 def get_database_url():
     environment = get_environment()
 
-    if environment == "HEROKU":
+    if environment in ["HEROKU", "TEST"]:
         database_url = os.environ["DATABASE_URL"]
     elif environment == "LOCAL":
         database_url = config()
