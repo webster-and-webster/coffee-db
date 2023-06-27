@@ -21,7 +21,7 @@ class RadialVariationPlotter:
     """
 
     # columns to be dropped from the radial plot
-    drop_cols = ["date_added"]
+    drop_cols = ["date_added", "id"]
     conversion_cols = [
         "country_of_origin", "roastery", "process", "varietal", "added_by"
     ]
@@ -37,7 +37,7 @@ class RadialVariationPlotter:
             self.variation_functions = {}
 
         for variation_function in self.variation_functions.values():
-            if not isinstance(variation_function, callable):
+            if not callable(variation_function):
                 raise TypeError("Values within variation_functions must be of type callable")
             test_run = variation_function([1, 2])
             if not isinstance(test_run, float):
