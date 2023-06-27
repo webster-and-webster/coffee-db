@@ -6,5 +6,6 @@ from coffee_db.app.pages.visualizations import (
     CoffeesByUser,
     Visualizations,
     WorldMapPlot,
+    RadialVariation,
 )
 from coffee_db.app.pages.view_data import ViewData
