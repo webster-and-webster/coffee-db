@@ -54,8 +54,7 @@ class RadialVariationPlotter:
             data[col] = data[col].astype(str)
 
         # fix columns
-        # data.elevation = data.elevation.str.replace(",", "").astype(float)
-        # data.tasting_notes = data.tasting_notes.str.split(pat=", ")
+        data.tasting_notes = data.tasting_notes.str.split(pat=", ")
 
         return data
 
