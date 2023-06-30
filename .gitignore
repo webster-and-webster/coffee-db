@@ -201,3 +201,5 @@ terraform.rc
 .DS_store
 
 scratchpad/
+
+settings.ini

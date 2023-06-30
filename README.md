@@ -6,9 +6,7 @@ Coffee DB is a web app to track purchases of bags of coffee. The app is built wi
 
 In order to run the app locally, it requires you to have [postgresql](https://www.postgresql.org/) installed on your machine. Once postgresql is installed, run the `helpers/db_init.sql` file to build the database that matches the production schemas. This will give you the correct tables for the app to run correctly.
 
-In order to connect locally, add a database.ini file in the following location: `coffee_db/database/database.ini`
-
-The file should look like the following:
+In order to connect locally, add a settings.ini file in the root directory of the project. The file should look like the following:
 ```
 [postgresql]
 host=localhost
