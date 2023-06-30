@@ -27,7 +27,7 @@ class DiversityPlotter:
 
     Creates a radial plot of diversity indexes for each attribute by user.
     Each attribute is point on the circumference of the circle, and each user's
-    diveristy scores are plotted as separate traces by user.
+    diveristy scores are plotted as a separate trace.
     """
 
     # Functions to calculate diversity scores for each attribute. Diversity
