@@ -6,6 +6,7 @@ from coffee_db.app.pages import (
     Visualizations,
     WorldMapPlot,
     ViewData,
+    CoffeeDiversity,
 )
 from coffee_db import CoffeeDB
 from coffee_db.data_loaders import PostgresDataLoader
@@ -15,7 +16,13 @@ from coffee_db.app import forms, tables
 
 pages = [
     HomePage(),
-    Visualizations(tabs=[WorldMapPlot(), CoffeesByUser()]),
+    Visualizations(
+        tabs=[
+            WorldMapPlot(),
+            CoffeesByUser(),
+            CoffeeDiversity(),
+        ]
+    ),
     ViewData(
         tabs=[
             tables.StreamlitTable("roastery"),

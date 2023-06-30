@@ -4,6 +4,7 @@ from streamlit_folium import folium_static
 from coffee_db.app.utils import Page, Tab
 from coffee_db.visualizations.datetime_plot import DatetimePlotter
 from coffee_db.visualizations.map_visualizations import WorldMapPlotter
+from coffee_db.visualizations.diversity_plotter import DiversityPlotter
 
 
 class Visualizations(Page):
@@ -51,5 +52,20 @@ class CoffeesByUser(Tab):
             datetime_plotter.plot_data(
                 coffees=st.cache.coffees,
                 value="# Coffees Purchased",
+            )
+        )
+
+
+class CoffeeDiversity(Tab):
+    @property
+    def header(self):
+        return "Diversity by User"
+
+    def write(self):
+        st.title(self.header)
+        diversity_plotter = DiversityPlotter()
+        st.plotly_chart(
+            diversity_plotter.plot_data(
+                coffees=st.cache.coffees, users=st.cache.coffee_users, title=""
             )
         )
