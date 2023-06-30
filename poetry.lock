@@ -257,16 +257,6 @@ files = [
 ]
 
 [[package]]
-name = "decouple"
-version = "0.0.7"
-description = "Decoupling logic"
-optional = false
-python-versions = ">=3.7"
-files = [
-    {file = "decouple-0.0.7.tar.gz", hash = "sha256:c253c1cc62b76e9720a066f334552548c6de1884bc3bdf456ddb62d61b867b09"},
-]
-
-[[package]]
 name = "deprecation"
 version = "2.1.0"
 description = "A library to handle automated deprecations"
@@ -1426,6 +1416,17 @@ files = [
 six = ">=1.5"
 
 [[package]]
+name = "python-decouple"
+version = "3.8"
+description = "Strict separation of settings from code."
+optional = false
+python-versions = "*"
+files = [
+    {file = "python-decouple-3.8.tar.gz", hash = "sha256:ba6e2657d4f376ecc46f77a3a615e058d93ba5e465c01bbe57289bfb7cce680f"},
+    {file = "python_decouple-3.8-py3-none-any.whl", hash = "sha256:d0d45340815b25f4de59c974b855bb38d03151d81b037d9e3f463b0c9f8cbd66"},
+]
+
+[[package]]
 name = "python-slugify"
 version = "6.1.2"
 description = "A Python slugify application that also handles Unicode"
@@ -1976,4 +1977,4 @@ testing = ["big-O", "flake8 (<5)", "jaraco.functools", "jaraco.itertools", "more
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.9,<3.9.7 || >3.9.7,<4.0"
-content-hash = "8368dcd43a1e7ec9e0434f12b22b785a9454cc6529fbd58bd8742da474a0958d"
+content-hash = "f3f3d861fabab6d2f998ced1611caa2650cfc131eb4f6da8c4e946f6180f17cc"
