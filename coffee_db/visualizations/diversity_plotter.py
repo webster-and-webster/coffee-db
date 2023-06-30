@@ -26,7 +26,9 @@ class DiversityPlotter:
         "Roastery": unique_value_ratio,
         "Process": unique_value_ratio,
         "Varietal": unique_value_ratio,
-        "Elevation": np.var,
+        # TODO: Fix missing values for elevation when using variance
+        # "Elevation": np.var,
+        "Elevation": unique_value_ratio,
         "Tasting Notes": unique_value_ratio
     }
 
@@ -42,7 +44,7 @@ class DiversityPlotter:
             "Process": coffee.process.name,
             "Varietal": [varietal.name for varietal in coffee.varietal],
             "Elevation": coffee.elevation,
-            "Tasting Notes": coffee.tasting_notes.split(", ")
+            "Tasting Notes": "" if coffee.tasting_notes is None else coffee.tasting_notes.split(", ")
         } for coffee in coffees]
 
         # converts to a dictionary where each key's value is a list of values
@@ -88,7 +90,7 @@ class DiversityPlotter:
                 theta=list(scores.keys()),
                 fill='toself',
                 name=user,
-                hovertemplate='Variation Index: %{r}'
+                hovertemplate='Diversity Index: %{r:.2f}'
             ))
         fig.update_layout(
             polar=dict(radialaxis=dict(visible=False)),
