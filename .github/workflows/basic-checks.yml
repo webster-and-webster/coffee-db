@@ -34,4 +34,4 @@ jobs:
       
       - name: Test coffee_db app code
         run: |
-          make test_app
+          make unit-tests

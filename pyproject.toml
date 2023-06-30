@@ -25,6 +25,7 @@ pytest-playwright = "^0.3.2"
 black = "^23.1.0"
 pytest-mock = "^3.10.0"
 testcontainers = "^3.7.1"
+pytest-env = "^0.8.2"
 
 [build-system]
 requires = ["poetry-core"]

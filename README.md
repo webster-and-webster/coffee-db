@@ -44,13 +44,13 @@ make lint
 ```
 
 ## Testing with pytest
-The project uses pytest for testing. Testing is split into unit-tests for the coffee_app, and integration tests. The tests are checked as part of the CICD pipeline, but they can be run manually with the following make commands:
+The project uses pytest for testing. Testing is split into unit-tests and integration tests. The tests are checked as part of the CICD pipeline, but they can be run manually with the following make commands:
 ```
-make test_app
-make test_integration
+make unit-tests
+make integration-tests
 ```
 Note: In order for the tests to pass, you must have an available connection to a PSQL database.
-Note: Tests are still a work in progress, and testing coverage is sparse right now.
+Note: Integration tests use TestContainers to run a fresh psql database in an isolated container. 
 
 
 ## Heroku Commands
