@@ -4,7 +4,7 @@ on:
   pull_request:
 
 env:
-  POETRY_VERSION: 1.3.2
+  POETRY_VERSION: 1.5.1
 
 jobs:
 
@@ -34,4 +34,4 @@ jobs:
       
       - name: Test coffee_db app code
         run: |
-          make test_app
+          make unit-tests

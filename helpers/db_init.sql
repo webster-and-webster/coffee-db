@@ -1,3 +1,10 @@
+DROP TABLE IF EXISTS coffee,
+  roastery,
+  process,
+  variety,
+  country,
+  coffee_user;
+
 CREATE TABLE coffee (
   id serial PRIMARY KEY,
   name VARCHAR,

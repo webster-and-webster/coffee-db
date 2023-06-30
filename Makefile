@@ -4,8 +4,8 @@ lint:
 	flake8 $(SOURCE_FOLDER) --max-line-length 120
 	black --check $(SOURCE_FOLDER)
 
-test_app:
+unit-tests:
 	pytest tests/test_coffee_db/.
 
-test_integration:
+integration-tests:
 	pytest tests/test_integration/.

@@ -6,9 +6,7 @@ Coffee DB is a web app to track purchases of bags of coffee. The app is built wi
 
 In order to run the app locally, it requires you to have [postgresql](https://www.postgresql.org/) installed on your machine. Once postgresql is installed, run the `helpers/db_init.sql` file to build the database that matches the production schemas. This will give you the correct tables for the app to run correctly.
 
-In order to connect locally, add a database.ini file in the following location: `coffee_db/database/database.ini`
-
-The file should look like the following:
+In order to connect locally, add a settings.ini file in the root directory of the project. The file should look like the following:
 ```
 [postgresql]
 host=localhost
@@ -46,13 +44,13 @@ make lint
 ```
 
 ## Testing with pytest
-The project uses pytest for testing. Testing is split into unit-tests for the coffee_app, and integration tests. The tests are checked as part of the CICD pipeline, but they can be run manually with the following make commands:
+The project uses pytest for testing. Testing is split into unit-tests and integration tests. The tests are checked as part of the CICD pipeline, but they can be run manually with the following make commands:
 ```
-make test_app
-make test_integration
+make unit-tests
+make integration-tests
 ```
 Note: In order for the tests to pass, you must have an available connection to a PSQL database.
-Note: Tests are still a work in progress, and testing coverage is sparse right now.
+Note: Integration tests use TestContainers to run a fresh psql database in an isolated container. 
 
 
 ## Heroku Commands
