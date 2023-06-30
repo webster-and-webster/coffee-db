@@ -1,13 +1,10 @@
 import streamlit as st
 from streamlit_folium import folium_static
-import numpy as np
 
 from coffee_db.app.utils import Page, Tab
 from coffee_db.visualizations.datetime_plot import DatetimePlotter
 from coffee_db.visualizations.map_visualizations import WorldMapPlotter
-from coffee_db.visualizations.radial_plot import (
-    RadialVariationPlotter, list_unique_ratio
-)
+from coffee_db.visualizations.diversity_plotter import DiversityPlotter
 
 
 class Visualizations(Page):
@@ -59,24 +56,18 @@ class CoffeesByUser(Tab):
         )
 
 
-class RadialVariation(Tab):
+class CoffeeDiversity(Tab):
     @property
     def header(self):
-        return "Variation by User"
+        return "Diversity by User"
 
     def write(self):
         st.title(self.header)
-        radial_plotter = RadialVariationPlotter(
-            entity_col="added_by",
-            variation_functions={
-                "elevation": np.var,
-                "tasting_notes": list_unique_ratio,
-                "varietal": list_unique_ratio,
-            }
-        )
+        diversity_plotter = DiversityPlotter()
         st.plotly_chart(
-            radial_plotter.plot_data(
+            diversity_plotter.plot_data(
                 coffees=st.cache.coffees,
-                title="Coffee Variation by User"
+                users=st.cache.coffee_users,
+                title=""
             )
         )
