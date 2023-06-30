@@ -66,8 +66,6 @@ class CoffeeDiversity(Tab):
         diversity_plotter = DiversityPlotter()
         st.plotly_chart(
             diversity_plotter.plot_data(
-                coffees=st.cache.coffees,
-                users=st.cache.coffee_users,
-                title=""
+                coffees=st.cache.coffees, users=st.cache.coffee_users, title=""
             )
         )

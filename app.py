@@ -16,11 +16,13 @@ from coffee_db.app import forms, tables
 
 pages = [
     HomePage(),
-    Visualizations(tabs=[
-        # WorldMapPlot(),
-        CoffeesByUser(),
-        CoffeeDiversity()
-    ]),
+    Visualizations(
+        tabs=[
+            # WorldMapPlot(),
+            CoffeesByUser(),
+            CoffeeDiversity(),
+        ]
+    ),
     ViewData(
         tabs=[
             tables.StreamlitTable("roastery"),

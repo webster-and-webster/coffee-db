@@ -15,7 +15,7 @@ def unique_value_ratio(X: list) -> float:
 
 
 def variance(X: list) -> float:
-    """"
+    """ "
     Returns variance for all non-NoneType values in a list
     """
     return np.var([x for x in X if x is not None])
@@ -29,6 +29,7 @@ class DiversityPlotter:
     Each attribute is point on the circumference of the circle, and each user's
     diveristy scores are plotted as separate traces by user.
     """
+
     # Functions to calculate diversity scores for each attribute. Diversity
     # score functions must receive a single list argument and return a float.
     DIVERSITY_FUNCTION_MAP = {
@@ -37,7 +38,7 @@ class DiversityPlotter:
         "Process": unique_value_ratio,
         "Varietal": unique_value_ratio,
         "Elevation": variance,
-        "Tasting Notes": unique_value_ratio
+        "Tasting Notes": unique_value_ratio,
     }
 
     def get_coffee_attributes(self, coffees: list[Coffee]) -> dict[str, list]:
@@ -50,20 +51,24 @@ class DiversityPlotter:
             A dictionary of attribute names (keys) mapping to lists of
             attribute values for each coffee in the input coffees list.
         """
-        attributes = [{
-            "Country of Origin": coffee.country_of_origin.name,
-            "Roastery": coffee.roastery.name,
-            "Process": coffee.process.name,
-            "Varietal": [varietal.name for varietal in coffee.varietal],
-            "Elevation": coffee.elevation,
-            "Tasting Notes": [] if coffee.tasting_notes is None else coffee.tasting_notes.split(", ")
-        } for coffee in coffees]
+        attributes = [
+            {
+                "Country of Origin": coffee.country_of_origin.name,
+                "Roastery": coffee.roastery.name,
+                "Process": coffee.process.name,
+                "Varietal": [varietal.name for varietal in coffee.varietal],
+                "Elevation": coffee.elevation,
+                "Tasting Notes": []
+                if coffee.tasting_notes is None
+                else coffee.tasting_notes.split(", "),
+            }
+            for coffee in coffees
+        ]
 
         # converts to a dictionary where each key's value is a list of values
         # extracted from the list of dictionaries.
         return {
-            key: flatten_list([d[key] for d in attributes])
-            for key in attributes[0]
+            key: flatten_list([d[key] for d in attributes]) for key in attributes[0]
         }
 
     def get_diversity_scores(self, coffees: list[Coffee]) -> dict[str, float]:
@@ -135,25 +140,22 @@ class DiversityPlotter:
         """
         fig = go.Figure()
         for user, scores in diversity_scores.items():
-            fig.add_trace(go.Scatterpolar(
-                r=list(scores.values()),
-                theta=list(scores.keys()),
-                fill='toself',
-                name=user,
-                hovertemplate='Diversity Index: %{r:.2f}'
-            ))
+            fig.add_trace(
+                go.Scatterpolar(
+                    r=list(scores.values()),
+                    theta=list(scores.keys()),
+                    fill="toself",
+                    name=user,
+                    hovertemplate="Diversity Index: %{r:.2f}",
+                )
+            )
         fig.update_layout(
-            polar=dict(radialaxis=dict(visible=False)),
-            showlegend=True,
-            title=title
+            polar=dict(radialaxis=dict(visible=False)), showlegend=True, title=title
         )
         return fig
 
     def plot_data(
-        self,
-        coffees: list[Coffee],
-        users: list[CoffeeUser],
-        title: Optional[str] = ""
+        self, coffees: list[Coffee], users: list[CoffeeUser], title: Optional[str] = ""
     ):
         """
         Returns a radial plot of diversity indexes for each attribute by user.
@@ -177,7 +179,5 @@ class DiversityPlotter:
         normalized_diversity_scores = self.get_normalized_scores(
             coffees=coffees, users=users
         )
-        plot = self.make_plot(
-            diversity_scores=normalized_diversity_scores, title=title
-        )
+        plot = self.make_plot(diversity_scores=normalized_diversity_scores, title=title)
         return plot
