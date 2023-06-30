@@ -18,7 +18,7 @@ pages = [
     HomePage(),
     Visualizations(
         tabs=[
-            # WorldMapPlot(),
+            WorldMapPlot(),
             CoffeesByUser(),
             CoffeeDiversity(),
         ]
