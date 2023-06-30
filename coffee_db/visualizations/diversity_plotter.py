@@ -78,9 +78,6 @@ class DiversityPlotter:
             A dictionary of attribute names (keys) mapping to diversity scores.
         """
         coffee_attributes = self.get_coffee_attributes(coffees=coffees)
-        # print(coffee_attributes["Elevation"])
-        # print(type(coffee_attributes["Elevation"]))
-        print([value for value in coffee_attributes["Elevation"] if value is not None])
         return {
             attribute_name: self.DIVERSITY_FUNCTION_MAP[attribute_name](values)
             for attribute_name, values in coffee_attributes.items()
