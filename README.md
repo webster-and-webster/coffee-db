@@ -2,6 +2,10 @@
 
 Coffee DB is a web app to track purchases of bags of coffee. The app is built with a Streamlit frontend, which allows you to add new coffees and visualise the coffee database. The backend uses a postgres SQL database to store the coffees. Both the app and the databse are hosted using Heroku. The app can be accessed at the following url: https://coffee-db.herokuapp.com/
 
+## Architecture
+
+![architecture_diagram](docs/architecture_diagram.drawio.png)
+
 ## Running Locally
 
 In order to run the app locally, it requires you to have [postgresql](https://www.postgresql.org/) installed on your machine. Once postgresql is installed, run the `helpers/db_init.sql` file to build the database that matches the production schemas. This will give you the correct tables for the app to run correctly.
