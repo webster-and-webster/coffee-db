@@ -1,13 +1,13 @@
+import streamlit as st
 from abc import ABC, abstractmethod
 from datetime import datetime
 from pytz import timezone
 
-import streamlit as st
-
-from coffee_db.coffee import Coffee, CoffeeUser, Country, Process, Roastery, Variety
+from coffee_db.coffee import (
+    Coffee, CoffeeUser, Country, Process, Roastery, Variety
+)
 from coffee_db.validate import InputValidator
 from coffee_db.database.heroku_psql import CoffeeDB
-from coffee_db.app.utils.custom_title import make_title
 
 
 class EntryForm(ABC):
@@ -63,7 +63,7 @@ class EntryForm(ABC):
     def add(self, **kwargs):
         """Method to build the add entry form, used to add a new row into the database"""
 
-        st.header(f"Add {make_title(self.header)}")
+        st.header(f"Add {self.header}")
 
         with st.form(key=f"add_{self.header}", clear_on_submit=True):
             payload = self.build_payload(**kwargs)
@@ -85,7 +85,7 @@ class EntryForm(ABC):
     def remove(self):
         """Method to buold the remove entry form, used to remove a row from the database"""
 
-        st.header(f"Remove {make_title(self.header)}")
+        st.header(f"Remove {self.header}")
 
         with st.form(key=f"remove_{self.header}", clear_on_submit=True):
             row_id = st.text_input("ID")
